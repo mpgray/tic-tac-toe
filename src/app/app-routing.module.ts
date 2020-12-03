@@ -5,9 +5,10 @@ import { GameComponent } from './game/game.component';
 import { StatsComponent } from './stats/stats.component';
 
 const routes: Routes = [
-  { path: '', component: GameComponent },
+  { path: 'play', component: GameComponent },
   { path: 'stats', component: StatsComponent },
   { path: 'about', component: AboutComponent },
+  { path: '',   redirectTo: '/play', pathMatch: 'full' },
 ];
 
 @NgModule({
