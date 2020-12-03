@@ -26,14 +26,20 @@
 
 <!-- Begin page content -->
 <main role="main" class="flex-shrink-0">
-  <div class="container">
+  <div class="container text-center">
     <h1 class="mt-5">
       <a class="title-bar text-warning" href="#">Tic-Tac-Toe</a>
     </h1>
     <p class="lead">
+      Play As:
+      <button type="button" class="btn btn-danger" data-toggle="tooltip" data-placement="top" title="Go First"><em>X</em></button>
+      <button type="button" class="btn btn-primary"  data-toggle="tooltip" data-placement="top" title="Go Last"><em>O</em></button>
+      <button type="button" class="btn btn-info"><em>Random</em></button>
     </p>
   </div>
+
   <div class="container game-board">
+
     <div class="row">
       <div class="col game-square"></div>
       <div class="col game-square"></div>
@@ -50,12 +56,6 @@
   </div>
 </main>
 
-<footer class="footer mt-auto py-3">
-  <div class="container">
-    <span class="text-muted">
-      <button type="button" class="btn btn-danger" data-toggle="tooltip" data-placement="top" title="Go First">Play as <em>X</em></button>
-      <button type="button" class="btn btn-primary"  data-toggle="tooltip" data-placement="top" title="Go Last">Play as <em>O</em></button>
-      <button type="button" class="btn btn-info">Play as <em>Random</em></button>
-    </span>
-  </div>
-</footer>
+
+
+
