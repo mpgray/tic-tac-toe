@@ -37,10 +37,20 @@ div.game-square {
   border-radius: 5px;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   transition: background-color 1s;
+  transition: transform .5s;
 }
 
 div.game-square:hover {
   background-color: turquoise;
+}
+
+div.game-square:active {
+  transform: rotateX(150deg);
+}
+
+button {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  margin: 5px;
 }
 
 button > em {
