@@ -1,0 +1,61 @@
+<header>
+  <!-- Fixed navbar -->
+  <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+      <a class="navbar-brand text-warning title-bar" href="#">Tic-Tac-Toe</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarCollapse">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item active">
+          <a class="nav-link" href="#">Play <span class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Statistics</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">About</a>
+        </li>
+      </ul>
+      <div class="mt-2 mt-md-0">
+        Hi
+      </div>
+    </div>
+  </nav>
+</header>
+
+<!-- Begin page content -->
+<main role="main" class="flex-shrink-0">
+  <div class="container">
+    <h1 class="mt-5">
+      <a class="title-bar text-warning" href="#">Tic-Tac-Toe</a>
+    </h1>
+    <p class="lead">
+    </p>
+  </div>
+  <div class="container game-board">
+    <div class="row">
+      <div class="col game-square"></div>
+      <div class="col game-square"></div>
+      <div class="col game-square"></div>
+      <div class="w-100"></div>
+      <div class="col game-square"></div>
+      <div class="col game-square"></div>
+      <div class="col game-square"></div>
+      <div class="w-100"></div>
+      <div class="col game-square"></div>
+      <div class="col game-square"></div>
+      <div class="col game-square"></div>
+    </div>
+  </div>
+</main>
+
+<footer class="footer mt-auto py-3">
+  <div class="container">
+    <span class="text-muted">
+      <button type="button" class="btn btn-danger" data-toggle="tooltip" data-placement="top" title="Go First">Play as <em>X</em></button>
+      <button type="button" class="btn btn-primary"  data-toggle="tooltip" data-placement="top" title="Go Last">Play as <em>O</em></button>
+      <button type="button" class="btn btn-info">Play as <em>Random</em></button>
+    </span>
+  </div>
+</footer>

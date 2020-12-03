@@ -1,1 +1,89 @@
 /* You can add global styles to this file, and also import other style files */
+
+
+body{
+  font-family: 'Faster One', cursive;
+  font-size: 125%;
+  text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px gray;
+  background-color: beige;
+}
+main > .container {
+  padding: 60px 15px 0;
+}
+
+p {
+  color: limegreen;
+}
+
+a.title-bar {
+  border: 2px solid black;
+  background-color: white;
+  border-radius: 5px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+div.game-board {
+  width: 50%;
+  max-height: 500px;
+  position: relative;
+
+}
+
+@media screen and (max-width: 768px) {
+  div.game-board {
+      width: 75%;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  div.game-board {
+      width: 90%;
+  }
+  h1{
+    display: none;
+  }
+}
+
+div.game-board > div {
+	position: absolute;
+	top: 0; bottom: 0; left: 0; right: 0;
+	color: white;
+	font-size: 24px;
+  text-align: center;
+}
+
+div.game-square {
+  width: 100%;
+  padding-bottom: 20%; /* 16:9 */
+	position: relative;
+  border: 2px solid black;
+  background-color: white;
+  border-radius: 5px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  transition: background-color 1s;
+}
+
+div.game-square:hover {
+  background-color: turquoise;
+}
+
+.footer {
+  font-family: 'Fascinate', cursive;
+  background-color: #f5f5f5;
+}
+
+.footer > .container {
+  padding-right: 15px;
+  padding-left: 15px;
+}
+
+.nav-link {
+  font-family: 'Fascinate', cursive;
+}
+
+code {
+  font-size: 80%;
+}
+
+button > em {
+  color: yellow;
+}
