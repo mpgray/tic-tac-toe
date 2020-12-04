@@ -24,26 +24,30 @@ export class GameComponent implements OnInit {
   }
 
   startGame(piece: number){
-    this.isGame = true;
-    if(piece == 3) {
-      piece = Math.floor(Math.random() * (2)) + 1;
-    }
-    this.playerPiece = piece;
-    if(this.playerPiece == 1)
-      this.aiPiece = 2;
-    else {
-      this.aiPiece = 1;
-      this.aiTurn();
+    if(!this.isGame) {
+      this.isGame = true;
+      if(piece == 3) {
+        piece = Math.floor(Math.random() * (2)) + 1;
+      }
+      this.playerPiece = piece;
+      if(this.playerPiece == 1)
+        this.aiPiece = 2;
+      else {
+        this.aiPiece = 1;
+        this.aiTurn();
+      }
     }
 
   }
 
   makeMove(square: number) {
-    if(this.gameBoard[square] == 0) {
-      this.gameBoard[square] = this.playerPiece;
+    if(this.isGame) {
+      if(this.gameBoard[square] == 0) {
+        this.gameBoard[square] = this.playerPiece;
+      }
+      this.gameTurn++;
+      this.aiTurn();
     }
-    this.gameTurn++;
-    this.aiTurn();
   }
 
   getGameMessage(): string{
@@ -78,6 +82,7 @@ export class GameComponent implements OnInit {
   }
 
   aiTurn(){
+    console.log(this.gameTurn)
     switch(this.gameTurn) {
       case 0: {
         this.aiMove(4);
@@ -91,11 +96,133 @@ export class GameComponent implements OnInit {
          }
          break;
       }
+      case 2: {
+        if(this.gameBoard[0] == this.playerPiece || this.gameBoard[2] == this.playerPiece)
+          this.aiMove(1);
+        else if (this.gameBoard[6] == this.playerPiece || this.gameBoard[8] == this.playerPiece)
+          this.aiMove(7);
+        else
+          this.aiMove(0);
+        break;
+      }
+      case 3: {
+        let nextMove = this.aiWinScenarios(this.playerPiece);
+        if(nextMove !== -1) {
+          this.aiMove(nextMove);
+          break;
+        }
+        nextMove = this.aiCheckSides();
+        if(nextMove !== -1) {
+          this.aiMove(nextMove);
+          break;
+        }
+        nextMove = this.aiGoCorner();
+        this.aiMove(nextMove);
+        break;
+      }
+      case 4: {
+        let nextMove = this.aiWinScenarios(this.aiPiece);
+        if(nextMove !== -1) {
+          this.aiMove(nextMove);
+          break;
+        }
+        nextMove = this.aiWinScenarios(this.playerPiece);
+        if(nextMove !== -1) {
+          this.aiMove(nextMove);
+          break;
+        }
+        nextMove = this.aiGoCorner();
+        this.aiMove(nextMove);
+        break;
+      }
+      case 5: case 6: case 7: case 8: {
+        let nextMove = this.aiWinScenarios(this.aiPiece);
+        if(nextMove !== -1) {
+          this.aiMove(nextMove);
+          break;
+        }
+        nextMove = this.aiWinScenarios(this.playerPiece);
+        if(nextMove !== -1) {
+          this.aiMove(nextMove);
+          break;
+        }
+        nextMove = this.aiGoCorner();
+        this.aiMove(nextMove);
+        break;
+      }
       default: {
          //statements;
          break;
       }
    }
+  }
+
+  aiGoCorner(): number {
+    if(this.gameBoard[0] == 0) {
+      return 0;
+    }
+    if(this.gameBoard[2] == 0) {
+      return 2;
+    }
+    if(this.gameBoard[6] == 0) {
+      return 6;
+    }
+    if(this.gameBoard[8] == 0) {
+      return 8;
+    }
+    return -1
+  }
+
+  aiCheckSides(): number {
+    if(this.gameBoard[1] == this.playerPiece && this.gameBoard[3] == this.playerPiece && this.gameBoard[0] == 0)
+      return 0;
+    if(this.gameBoard[1] == this.playerPiece && this.gameBoard[5] == this.playerPiece && this.gameBoard[2] == 0)
+      return 2;
+    if(this.gameBoard[7] == this.playerPiece && this.gameBoard[3] == this.playerPiece && this.gameBoard[6] == 0)
+      return 6;
+    if(this.gameBoard[7] == this.playerPiece && this.gameBoard[5] == this.playerPiece && this.gameBoard[8] == 0)
+      return 8;
+    return -1;
+  }
+
+  aiWinScenarios(character: number) {
+    if(this.aiCheckWins([0,1,2], character) !== -1)
+      return this.aiCheckWins([0,1,2], character);
+    if(this.aiCheckWins([3,4,5], character) !== -1)
+      return this.aiCheckWins([3,4,5], character);
+    if(this.aiCheckWins([6,7,8], character) !== -1)
+      return this.aiCheckWins([6,7,8], character);
+    if(this.aiCheckWins([0,3,6], character) !== -1)
+      return this.aiCheckWins([0,3,6], character);
+    if(this.aiCheckWins([1,4,7], character) !== -1)
+      return this.aiCheckWins([1,4,7], character);
+    if(this.aiCheckWins([2,5,8], character) !== -1)
+      return this.aiCheckWins([2,5,8], character);
+    if(this.aiCheckWins([0,4,8], character) !== -1)
+      return this.aiCheckWins([0,4,8], character);
+    if(this.aiCheckWins([2,4,6], character) !== -1)
+      return this.aiCheckWins([2,4,6], character);
+    return -1;
+  }
+
+
+  aiCheckWins(wins: number[], character: number) {
+    let count = 0;
+    let isEmpty = false;
+    for(let win of wins) {
+      if(this.gameBoard[win] == character)
+        count++;
+      if(this.gameBoard[win] == 0)
+        isEmpty = true;
+    }
+    if(count == 2 && isEmpty == true){
+      for(let win of wins) {
+        if(this.gameBoard[win] == 0) {
+          return win;
+        }
+      }
+    }
+    return -1;
   }
 
   aiMove(square: number) {
