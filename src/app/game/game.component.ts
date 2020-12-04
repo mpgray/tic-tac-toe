@@ -16,14 +16,24 @@ export class GameComponent implements OnInit {
   aiLastMove: number;
 
   isGame: boolean = false;
-  gameTurn = 0
+  gameTurn = 0;
+
+  showAlert = false;
+  alertMessage = "Good luck";
 
   constructor() { }
 
   ngOnInit(): void {
   }
 
+  clearBoard(){
+    this.gameBoard = [0, 0, 0, 0, 0, 0, 0, 0, 0];
+    this.gameTurn = 0;
+  }
+
   startGame(piece: number){
+    this.clearBoard();
+    this.showAlert = false;
     if(!this.isGame) {
       this.isGame = true;
       if(piece == 3) {
@@ -44,21 +54,24 @@ export class GameComponent implements OnInit {
     if(this.isGame) {
       if(this.gameBoard[square] == 0) {
         this.gameBoard[square] = this.playerPiece;
+        this.gameTurn++;
+        this.aiTurn();
       }
-      this.gameTurn++;
-      this.aiTurn();
+    }
+    if(this.gameTurn == 9) {
+      this.isGame = false;
+      console.log("You tie");
+      this.tie();
     }
   }
 
   getGameMessage(): string{
     let gameMessage = "";
-    if(this.gameTurn == 0) {
-      gameMessage = "Game Over";
-    }
-    if(this.playerPiece == 1){
+    if(this.gameTurn == 0 || this.gameTurn == 1) {
+      gameMessage = "X always goes first";
+    } else if(this.playerPiece == 1) {
       gameMessage = "You are X";
-    }
-    if(this.playerPiece == 2){
+    } else if(this.playerPiece == 2) {
       gameMessage = "You are 0";
     }
     return gameMessage;
@@ -82,7 +95,6 @@ export class GameComponent implements OnInit {
   }
 
   aiTurn(){
-    console.log(this.gameTurn)
     switch(this.gameTurn) {
       case 0: {
         this.aiMove(4);
@@ -120,10 +132,11 @@ export class GameComponent implements OnInit {
         this.aiMove(nextMove);
         break;
       }
-      case 4: {
+      case 4: case 5: case 6: case 7: case 8: {
         let nextMove = this.aiWinScenarios(this.aiPiece);
         if(nextMove !== -1) {
           this.aiMove(nextMove);
+          this.aiWin();
           break;
         }
         nextMove = this.aiWinScenarios(this.playerPiece);
@@ -132,29 +145,44 @@ export class GameComponent implements OnInit {
           break;
         }
         nextMove = this.aiGoCorner();
-        this.aiMove(nextMove);
-        break;
-      }
-      case 5: case 6: case 7: case 8: {
-        let nextMove = this.aiWinScenarios(this.aiPiece);
         if(nextMove !== -1) {
           this.aiMove(nextMove);
           break;
         }
-        nextMove = this.aiWinScenarios(this.playerPiece);
+        nextMove = this.aiNextOpen();
         if(nextMove !== -1) {
           this.aiMove(nextMove);
-          break;
+        } else {
+          console.error("Error: AI Acted Unexpectedly");
         }
-        nextMove = this.aiGoCorner();
-        this.aiMove(nextMove);
-        break;
       }
       default: {
-         //statements;
+         this.isGame = false;
          break;
       }
    }
+  }
+
+  aiWin() {
+    this.isGame = false;
+    this.showAlert = true;
+    this.alertMessage = "You Lost. I'm so, so sorry.";
+    console.log("You lost")
+  }
+
+  tie() {
+    this.isGame = false;
+    this.showAlert = true;
+    this.alertMessage = "You Tie.";
+    console.log("You Tie")
+  }
+
+  aiNextOpen(): number {
+    for(let i = 0; i < 8; i++){
+      if(this.gameBoard[i] == 0)
+        return i;
+    }
+    return -1;
   }
 
   aiGoCorner(): number {
