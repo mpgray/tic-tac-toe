@@ -1,46 +1,49 @@
 <!-- Begin page content -->
 <main role="main" class="flex-shrink-0">
   <div class="container text-center">
-    <h1 class="mt-5">
-      <a class="title-bar text-warning" href="#">Tic-Tac-Toe</a>
+    <h1 class="mt-3" >
+      <a class="title-bar text-warning"  data-toggle="tooltip" data-placement="bottom" title="Restart Game (Give Up)" href="#">Tic-Tac-Toe</a>
     </h1>
-    <p class="lead">
-      <button type="button" class="btn btn-danger" data-toggle="tooltip" data-placement="bottom" title="Go First">Play As <em>X</em></button>
-      <button type="button" class="btn btn-primary"  data-toggle="tooltip" data-placement="bottom" title="Go Last">Play As <em>O</em></button>
-      <button type="button" class="btn btn-info">Play As <em>Random</em></button>
+    <p class="lead" *ngIf="!this.isGame">
+      <button type="button" class="btn btn-danger"(click)="startGame(1)">Play As <em>X</em></button>
+      <button type="button" class="btn btn-success" (click)="startGame(2)">Play As <em>O</em></button>
+      <button type="button" class="btn btn-info" (click)="startGame(3)">Play As <em>Random</em></button>
     </p>
   </div>
 
   <div class="container game-board">
-
     <div class="row">
-      <div class="col game-square"  style="vertical-align: middle;" (click)="makeMove(0)">
+      <div class="col game-alerts" *ngIf="this.isGame">
+        {{getGameMessage()}}
+      </div>
+      <div class="w-100"></div>
+      <div class="col game-square" [ngClass]="{'animate-square': isOpen(0), 'ai-animation': aiAnimate(0)}" (click)="makeMove(0)">
           <img src="{{squareImg(0)}}" class="img-fluid">
       </div>
-      <div class="col game-square" (click)="makeMove(1)">
+      <div class="col game-square" [ngClass]="{'animate-square': isOpen(1), 'ai-animation': aiAnimate(1)}" (click)="makeMove(1)">
           <img src="{{squareImg(1)}}" class="img-fluid">
       </div>
-      <div class="col game-square" (click)="makeMove(2)">
+      <div class="col game-square" [ngClass]="{'animate-square': isOpen(2), 'ai-animation': aiAnimate(2)}" (click)="makeMove(2)">
         <img src="{{squareImg(2)}}" class="img-fluid">
       </div>
       <div class="w-100"></div>
-      <div class="col game-square" (click)="makeMove(3)">
+      <div class="col game-square" [ngClass]="{'animate-square': isOpen(3), 'ai-animation': aiAnimate(3)}" (click)="makeMove(3)">
         <img src="{{squareImg(3)}}" class="img-fluid">
       </div>
-      <div class="col game-square" (click)="makeMove(4)">
+      <div class="col game-square" [ngClass]="{'animate-square': isOpen(4), 'ai-animation': aiAnimate(4)}" (click)="makeMove(4)">
         <img src="{{squareImg(4)}}" class="img-fluid">
       </div>
-      <div class="col game-square" (click)="makeMove(5)">
+      <div class="col game-square" [ngClass]="{'animate-square': isOpen(5), 'ai-animation': aiAnimate(5)}" (click)="makeMove(5)">
         <img src="{{squareImg(5)}}" class="img-fluid">
       </div>
       <div class="w-100"></div>
-      <div class="col game-square" (click)="makeMove(6)">
+      <div class="col game-square" [ngClass]="{'animate-square': isOpen(6), 'ai-animation': aiAnimate(6)}" (click)="makeMove(6)">
         <img src="{{squareImg(6)}}" class="img-fluid">
       </div>
-      <div class="col game-square" (click)="makeMove(7)">
+      <div class="col game-square" [ngClass]="{'animate-square': isOpen(7), 'ai-animation': aiAnimate(7)}" (click)="makeMove(7)">
         <img src="{{squareImg(7)}}" class="img-fluid">
       </div>
-      <div class="col game-square" (click)="makeMove(8)">
+      <div class="col game-square" [ngClass]="{'animate-square': isOpen(8), 'ai-animation': aiAnimate(8)}" (click)="makeMove(8)">
         <img src="{{squareImg(8)}}" class="img-fluid">
       </div>
     </div>
