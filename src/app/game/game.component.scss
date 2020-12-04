@@ -1,8 +1,25 @@
+@keyframes aiAnimation {
+  0% {
+    transform: rotateX(180deg);
+  }
+  100% {
+    transform: rotateX(360deg);
+  }
+}
+
+@keyframes aiImage {
+  0% {
+    visibility: visible;
+  }
+  100% {
+    visibility: visible;
+  }
+}
+
 div.game-board {
   width: 50%;
   max-height: 500px;
   position: relative;
-
 }
 
 @media screen and (max-width: 768px) {
@@ -20,6 +37,15 @@ div.game-board {
   }
 }
 
+div.game-alerts {
+  border: 2px solid black;
+  background-color: white;
+  color:  #f0ad4e;
+  width: 50%;
+  border-radius: 5px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
 div.game-board > div {
 	position: absolute;
 	top: 0; bottom: 0; left: 0; right: 0;
@@ -30,27 +56,40 @@ div.game-board > div {
 
 div.game-square {
   width: 100%;
-  padding-bottom: 20%; /* 16:9 */
+
 	position: relative;
   border: 2px solid black;
   background-color: white;
   border-radius: 5px;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-  transition: background-color 1s;
   transition: transform .5s;
+
 }
 
-div.game-square:hover {
+div.animate-square{
+  transition: background-color 1s;
+}
+
+div.animate-square:hover {
   background-color: turquoise;
 }
 
 div.game-square:active {
-  transform: rotateX(150deg);
+  transform: rotateX(180deg);
+}
+
+div.ai-animation {
+  animation: 1s ease-out 1s 1 aiAnimation;
+}
+
+div.ai-animation > img{
+  visibility: hidden;
+  animation: 1s ease-out 1s infinite aiImage;
 }
 
 button {
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-  margin: 5px;
+  margin: 0px 5px 0px 5px;
 }
 
 button > em {
