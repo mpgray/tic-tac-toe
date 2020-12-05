@@ -25,6 +25,10 @@
   0%   {top:0px;}
   100% {top:-120px; visibility: hidden;}
 }
+@keyframes buttons-return {
+  0%   {top:-120px;}
+  100% {top:0px; visibility: visible;}
+}
 
 div.game-board {
   width: 50%;
@@ -126,6 +130,15 @@ div.game-buttons {
   animation-name: buttons;
   animation-duration: 5s;
   animation-delay: 0s;
+  animation-fill-mode: forwards;
+}
+
+div.game-buttons-return {
+  position: relative;
+  animation-name: buttons-return;
+  animation-duration: 1s;
+  animation-delay: 0s;
+  animation-fill-mode: forwards;
 }
 
 button > em {
