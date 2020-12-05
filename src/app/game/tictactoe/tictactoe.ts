@@ -25,6 +25,9 @@ export class TicTacToe {
    private ai: Mark = Mark.EMPTY;
 
    isGame: boolean = false;
+   tied: boolean = false;
+   looser: boolean = false
+
    turn = 0;
 
   constructor() {
@@ -45,6 +48,8 @@ export class TicTacToe {
   public reset() {
     this.clearBoard();
     this.clearMarks();
+    this.looser = false;
+    this.tied = false;
     this.turn = 0;
   }
 
@@ -95,7 +100,7 @@ export class TicTacToe {
     }
   }
 
-  public end() {
+  private end() {
     this.isGame = false;
   }
 
@@ -108,19 +113,76 @@ export class TicTacToe {
     return false;
   }
 
+  public wins() {
+    if(this.won([0,1,2]))
+      return true;
+    if(this.won([3,4,5]))
+      return true;
+    if(this.won([6,7,8]))
+      return true;
+    if(this.won([0,3,6]))
+      return true;
+    if(this.won([1,4,7]))
+      return true;
+    if(this.won([2,5,8]))
+      return true;
+    if(this.won([0,4,8]))
+      return true;
+    if(this.won([2,4,6]))
+      return true;
+    return false;
+  }
+
+  private won(wins: number[]): boolean {
+    let count = 0;
+    for(let win of wins) {
+      if(this.getMark(win) == this.ai)
+        count++;
+    }
+    if(count == 3){
+      return true
+    }
+    return false;
+  }
+
+  public lost() {
+    this.end();
+    this.looser = true
+  }
+
+  public tie() {
+    this.end();
+    this.tied = true;
+  }
+
+  public getLost() {
+    return this.looser;
+  }
+
+  public getTie() {
+    return this.tied;
+  }
+
   public toString(): string {
     let msg = ""
     if(this.turn == 0 || this.turn == 1) {
       msg = "X always goes first!";
     } else {
-      msg = "Turn: " + this.getTurn();
+      msg = "";
     }
-    msg += " You are ";
-
-    if(this.player == Mark.O) {
-      msg += "O"
-    } else if (this.player == Mark.X) {
-      msg += "X"
+    if(this.getIsGame()) {
+      msg += " You are ";
+      if(this.player == Mark.O) {
+        msg += "O"
+      } else if (this.player == Mark.X) {
+        msg += "X"
+      }
+    }
+    if(this.looser) {
+      msg = "You have lost. I'm so, so sorry"
+    }
+    if(this.tied) {
+      msg = "You have tied."
     }
     return msg;
   }
