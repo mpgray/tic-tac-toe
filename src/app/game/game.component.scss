@@ -16,11 +16,18 @@
   }
 }
 
-@keyframes end {
+@keyframes tied {
   0%   {background-color:white; top:0px;}
-  25%  {background-color:#f0ad4e; top:120px;}
-  75%  {background-color:#f0ad4e; top:120px;}
-  100% {background-color:white; top:0%;}
+  25%  {background-color:#f0ad4e; color: whitesmoke; top:120px;}
+  75%  {background-color:#f0ad4e; color: whitesmoke; top:120px;}
+  100% {background-color:white; color: #f0ad4e; top:0%;}
+}
+
+@keyframes lost {
+  0%   {background-color:white; top:0px;}
+  25%  {background-color: #d9534f; color: whitesmoke; top:120px;}
+  75%  {background-color: #d9534f; color: whitesmoke; top:120px;}
+  100% {background-color:white; color: #f0ad4e; top:0%;}
 }
 
 div.game-board {
@@ -58,18 +65,16 @@ div.game-alerts {
 
 div.game-tied {
   position: relative;
-  color: whitesmoke;
-  background-color: #f0ad4e;
-  animation-name: end;
+  color: #f0ad4e;
+  animation-name: tied;
   animation-duration: 6s;
   animation-delay: 0s;
 }
 
 div.game-lost {
   position: relative;
-  color: whitesmoke;
-  background-color: #d9534f;
-  animation-name: end;
+  color: #f0ad4e;
+  animation-name: lost;
   animation-duration: 6s;
   animation-delay: 1s;
 }
