@@ -4,9 +4,6 @@
     <h1 class="mt-3" >
       <a class="title-bar text-warning"  data-toggle="tooltip" data-placement="bottom" title="Restart Game (Give Up)" href="#">Tic-Tac-Toe</a>
     </h1>
-    <div class="alert alert-primary" role="alert" *ngIf = "showAlert">
-      {{alertMessage}}
-    </div>
     <p class="lead" *ngIf="!game.getIsGame()">
       <button type="button" class="btn btn-danger"(click)="start(1)">Play As <em>X</em></button>
       <button type="button" class="btn btn-success" (click)="start(2)">Play As <em>O</em></button>
@@ -14,9 +11,9 @@
     </p>
   </div>
 
-  <div class="container game-board">
+  <div class="container game-board" *ngIf="started">
     <div class="row">
-      <div class="col game-alerts" *ngIf="game.getIsGame()">
+      <div class="col game-alerts" [ngClass]="{'game-lost': game.getLost(), 'game-tied': game.getTie()}">
         {{game.toString()}}
       </div>
       <div class="w-100"></div>

@@ -13,8 +13,7 @@ export class GameComponent implements OnInit {
   game = new TicTacToe;
   ai = new Ai(this.game);
 
-  showAlert = false;
-  alertMessage = "Good luck";
+  started: boolean = false;
 
   constructor() {}
 
@@ -22,6 +21,7 @@ export class GameComponent implements OnInit {
   }
 
   private start(mark: Mark) {
+    this.started = true;
     this.game.start(mark);
     if(this.game.getAi() == Mark.X) {
       this.ai.go();
@@ -31,6 +31,11 @@ export class GameComponent implements OnInit {
   move(square: Square) {
     if(this.game.move(square)) {
       this.ai.go();
+      if(this.game.wins()) {
+        this.game.lost();
+      } else if (this.game.turn > 8) {
+        this.game.tie();
+      }
     }
   }
 
@@ -42,20 +47,6 @@ export class GameComponent implements OnInit {
       imgPath = "../../assets/img/o.png";
     }
     return imgPath;
-  }
-
-  lost() {
-    this.game.end();
-    this.showAlert = true;
-    this.alertMessage = "You Lost. I'm so, so sorry.";
-    console.log("You lost")
-  }
-
-  tie() {
-    this.game.end();
-    this.showAlert = true;
-    this.alertMessage = "You Tie.";
-    console.log("You Tie")
   }
 
   aiAnimate(square: number): boolean {

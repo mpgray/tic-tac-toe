@@ -16,6 +16,13 @@
   }
 }
 
+@keyframes end {
+  0%   {background-color:white; top:0px;}
+  25%  {background-color:#f0ad4e; top:120px;}
+  75%  {background-color:#f0ad4e; top:120px;}
+  100% {background-color:white; top:0%;}
+}
+
 div.game-board {
   width: 50%;
   max-height: 500px;
@@ -41,9 +48,30 @@ div.game-alerts {
   border: 2px solid black;
   background-color: white;
   color:  #f0ad4e;
+  z-index: 1;
   width: 50%;
   border-radius: 5px;
+  font-family: Arial,Helvetica Neue,Helvetica,sans-serif;
+  font-weight: bolder;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+div.game-tied {
+  position: relative;
+  color: whitesmoke;
+  background-color: #f0ad4e;
+  animation-name: end;
+  animation-duration: 6s;
+  animation-delay: 0s;
+}
+
+div.game-lost {
+  position: relative;
+  color: whitesmoke;
+  background-color: #d9534f;
+  animation-name: end;
+  animation-duration: 6s;
+  animation-delay: 1s;
 }
 
 div.game-board > div {
@@ -56,7 +84,6 @@ div.game-board > div {
 
 div.game-square {
   width: 100%;
-
 	position: relative;
   border: 2px solid black;
   background-color: white;

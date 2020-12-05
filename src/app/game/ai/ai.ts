@@ -49,7 +49,12 @@ export class Ai {
         break;
       }
       case 4: {
-        let nextMove = this.wins(this.game.getPlayer());
+        let nextMove = this.wins(this.game.getAi());
+        if(nextMove !== -1) {
+          this.move(nextMove);
+          break;
+        }
+        nextMove = this.wins(this.game.getPlayer());
         if(nextMove !== -1) {
           this.move(nextMove);
           break;
