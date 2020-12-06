@@ -8,6 +8,12 @@
   100% {visibility: visible;}
 }
 
+@keyframes main {
+  0%   {top: 0;}
+  50%  {top: -75vh;}
+  100% {top: -100vh;}
+}
+
 @keyframes tied {
   0%   {background-color:white; top:0px;}
   25%  {background-color:#f0ad4e; color: whitesmoke; top:120px;}
@@ -20,6 +26,12 @@
   25%  {background-color: #d9534f; color: whitesmoke; top:120px;}
   75%  {background-color: #d9534f; color: whitesmoke; top:120px;}
   100% {background-color:white; color: #f0ad4e; top:0px;}
+}
+
+@keyframes end {
+  0%   {transform: scale(1, 1); transform: rotate(0deg);}
+  75%  {transform: scale(1.5, 1.5); transform: rotate(180deg);}
+  100% {transform: scale(1, 1); transform: rotate(360deg);}
 }
 
 @keyframes buttons {
@@ -53,6 +65,10 @@ div.game-board {
 
 main {
   height: 100vh;
+  position: relative;
+  animation-name: main;
+  animation-duration: .75s;
+  animation-direction: reverse;
 }
 
 div.game-alerts {
@@ -110,6 +126,10 @@ div.game-square {
 
 div.animate-square{
   transition: background-color 1s;
+}
+
+div.square-end {
+  animation: 1s ease-out 1s 1 end;
 }
 
 div.animate-square:hover {

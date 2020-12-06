@@ -14,33 +14,33 @@
         <img src="../../assets/img/o.png" class="img-fluid mt-0" *ngIf="game.getPlayer() == 2">
       </div>
       <div class="w-100"></div>
-      <div class="col game-square" [ngClass]="{'animate-square': game.free(0), 'ai-animation': aiAnimate(0)}" (click)="move(0)">
+      <div class="col game-square" [ngClass]="{'animate-square': game.free(0), 'ai-animation': aiAnimate(0), 'square-end': game.getLost() || game.getTie() }" (click)="move(0)">
           <img src="{{squareImg(0)}}" class="img-fluid">
       </div>
-      <div class="col game-square" [ngClass]="{'animate-square': game.free(1), 'ai-animation': aiAnimate(1)}" (click)="move(1)">
+      <div class="col game-square" [ngClass]="{'animate-square': game.free(1), 'ai-animation': aiAnimate(1), 'square-end': game.getLost() || game.getTie() }" (click)="move(1)">
           <img src="{{squareImg(1)}}" class="img-fluid">
       </div>
-      <div class="col game-square" [ngClass]="{'animate-square': game.free(2), 'ai-animation': aiAnimate(2)}" (click)="move(2)">
+      <div class="col game-square" [ngClass]="{'animate-square': game.free(2), 'ai-animation': aiAnimate(2), 'square-end': game.getLost() || game.getTie() }" (click)="move(2)">
         <img src="{{squareImg(2)}}" class="img-fluid">
       </div>
       <div class="w-100"></div>
-      <div class="col game-square" [ngClass]="{'animate-square': game.free(3), 'ai-animation': aiAnimate(3)}" (click)="move(3)">
+      <div class="col game-square" [ngClass]="{'animate-square': game.free(3), 'ai-animation': aiAnimate(3), 'square-end': game.getLost() || game.getTie() }" (click)="move(3)">
         <img src="{{squareImg(3)}}" class="img-fluid">
       </div>
-      <div class="col game-square" [ngClass]="{'animate-square': game.free(4), 'ai-animation': aiAnimate(4)}" (click)="move(4)">
+      <div class="col game-square" [ngClass]="{'animate-square': game.free(4), 'ai-animation': aiAnimate(4), 'square-end': game.getLost() || game.getTie() }" (click)="move(4)">
         <img src="{{squareImg(4)}}" class="img-fluid">
       </div>
-      <div class="col game-square" [ngClass]="{'animate-square': game.free(5), 'ai-animation': aiAnimate(5)}" (click)="move(5)">
+      <div class="col game-square" [ngClass]="{'animate-square': game.free(5), 'ai-animation': aiAnimate(5), 'square-end': game.getLost() || game.getTie() }" (click)="move(5)">
         <img src="{{squareImg(5)}}" class="img-fluid">
       </div>
       <div class="w-100"></div>
-      <div class="col game-square" [ngClass]="{'animate-square': game.free(6), 'ai-animation': aiAnimate(6)}" (click)="move(6)">
+      <div class="col game-square" [ngClass]="{'animate-square': game.free(6), 'ai-animation': aiAnimate(6), 'square-end': game.getLost() || game.getTie() }" (click)="move(6)">
         <img src="{{squareImg(6)}}" class="img-fluid">
       </div>
-      <div class="col game-square" [ngClass]="{'animate-square': game.free(7), 'ai-animation': aiAnimate(7)}" (click)="move(7)">
+      <div class="col game-square" [ngClass]="{'animate-square': game.free(7), 'ai-animation': aiAnimate(7), 'square-end': game.getLost() || game.getTie() }" (click)="move(7)">
         <img src="{{squareImg(7)}}" class="img-fluid">
       </div>
-      <div class="col game-square" [ngClass]="{'animate-square': game.free(8), 'ai-animation': aiAnimate(8)}" (click)="move(8)">
+      <div class="col game-square" [ngClass]="{'animate-square': game.free(8), 'ai-animation': aiAnimate(8), 'square-end': game.getLost() || game.getTie() }" (click)="move(8)">
         <img src="{{squareImg(8)}}" class="img-fluid">
       </div>
       <div class="w-100"></div>
