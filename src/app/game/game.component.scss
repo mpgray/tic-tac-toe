@@ -116,7 +116,7 @@ div.animate-square{
 }
 
 div.square-end {
-  animation: 1s ease-out 1s 1 end;
+  animation: 1s ease-out .25s 1 end;
 }
 
 div.animate-square:hover {
@@ -137,6 +137,8 @@ div.ai-animation > img{
 }
 
 button {
+  border: 2px solid black;
+  border-radius: 5px;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   margin: 5px 2px 5px 2px;
 }

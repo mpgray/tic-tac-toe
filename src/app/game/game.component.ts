@@ -51,8 +51,10 @@ export class GameComponent implements OnInit {
       } else if (this.game.turn > 8) {
         this.game.tie();
       }
+      this.setLocalGameState();
     }
-    this.setLocalGameState();
+
+    console.log("Tie: " + this.game.getTie() + " Lost: " + this.game.getLost());
   }
 
   squareImg(square: number): string {
@@ -80,7 +82,6 @@ export class GameComponent implements OnInit {
         "player": this.game.getPlayer(),
         "ai": this.game.getAi()
       };
-      console.log(localData);
       localStorage.setItem("game", JSON.stringify(localData));
   }
 
