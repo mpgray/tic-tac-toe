@@ -10,6 +10,7 @@ export class StatsComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+
   }
 
 }

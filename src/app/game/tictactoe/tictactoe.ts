@@ -53,6 +53,14 @@ export class TicTacToe {
     this.turn = 0;
   }
 
+  public restore(obj: any) {
+    this.board = obj.board;
+    this.ai = obj.ai;
+    this.player = obj.player;
+    this.turn = obj.turn;
+    this.isGame = obj.game;
+  }
+
   public getTurn(): number {
     return this.turn;
   }
