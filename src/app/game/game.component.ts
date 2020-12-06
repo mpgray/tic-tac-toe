@@ -15,9 +15,23 @@ export class GameComponent implements OnInit {
 
   started: boolean = false;
 
-  constructor() {}
+  constructor() {
+
+  }
 
   ngOnInit(): void {
+    this.restore();
+  }
+
+  private restore() {
+    let obj = this.getLocalGameState();
+    if ( obj !== 'undefined' && obj !== null ) {
+      if(obj.game == false) {
+        localStorage.clear();
+      } else {
+        this.game.restore(obj);
+      }
+    }
   }
 
   private start(mark: Mark) {
@@ -26,6 +40,7 @@ export class GameComponent implements OnInit {
     if(this.game.getAi() == Mark.X) {
       this.ai.go();
     }
+    this.setLocalGameState();
   }
 
   move(square: Square) {
@@ -37,6 +52,7 @@ export class GameComponent implements OnInit {
         this.game.tie();
       }
     }
+    this.setLocalGameState();
   }
 
   squareImg(square: number): string {
@@ -54,7 +70,22 @@ export class GameComponent implements OnInit {
       return true;
     }
     return false;
-}
+  }
 
+  setLocalGameState() {
+      let localData = {
+        "board": this.game.getBoard(),
+        "game": this.game.getIsGame(),
+        "turn": this.game.getTurn(),
+        "player": this.game.getPlayer(),
+        "ai": this.game.getAi()
+      };
+      console.log(localData);
+      localStorage.setItem("game", JSON.stringify(localData));
+  }
+
+  getLocalGameState() {
+    return JSON.parse(localStorage.getItem("game"));
+  }
 
 }

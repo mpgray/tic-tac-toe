@@ -8,11 +8,6 @@
   100% {visibility: visible;}
 }
 
-@keyframes main {
-  0%   {top: 0;}
-  50%  {top: -75vh;}
-  100% {top: -100vh;}
-}
 
 @keyframes tied {
   0%   {background-color:white; top:0px;}
@@ -61,14 +56,6 @@ div.game-board {
   h1{
     display: none;
   }
-}
-
-main {
-  height: 100vh;
-  position: relative;
-  animation-name: main;
-  animation-duration: .75s;
-  animation-direction: reverse;
 }
 
 div.game-alerts {

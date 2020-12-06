@@ -1,9 +1,23 @@
+@keyframes main {
+  0%   {top: 0;}
+  100% {top: -100vh;}
+}
+
 body{
   font-family: 'Fascinate', cursive;
   font-size: 125%;
   text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px gray;
   background-color: beige;
 }
+
+main {
+  height: 100vh;
+  position: relative;
+  animation-name: main;
+  animation-duration: .5s;
+  animation-direction: reverse;
+}
+
 main > .container {
   padding: 60px 15px 0;
 }

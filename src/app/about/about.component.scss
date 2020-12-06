@@ -1,18 +1,6 @@
-@keyframes main {
-  0%   {top: 0;}
-  100% {top: -100vh;}
-}
-
-main {
-  height: 100vh;
-  position: relative;
-  animation-name: main;
-  animation-duration: .75s;
-  animation-direction: reverse;
-}
-
 div.about {
   max-width: 50%;
+  padding-top: 0px;
 }
 
 div.about > div {
@@ -26,5 +14,4 @@ div.about > div {
   border-radius: 5px;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   transition: transform .5s;
-
 }
