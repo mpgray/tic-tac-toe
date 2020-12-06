@@ -113,6 +113,7 @@ export class Ai {
       return Square.TOP;
     if(this.game.getMark(Square.TOP_RIGHT) == this.game.getPlayer() && this.game.getMark(Square.BOTTOM_LEFT) == this.game.getPlayer() && this.game.getMark(Square.BOTTOM) == Mark.EMPTY)
       return Square.BOTTOM;
+    return -1
   }
 
   private corner(): number {
