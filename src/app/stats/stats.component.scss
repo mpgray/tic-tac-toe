@@ -1,0 +1,12 @@
+@keyframes main {
+  0%   {top: 0;}
+  100% {top: -100vh;}
+}
+
+main {
+  height: 100vh;
+  position: relative;
+  animation-name: main;
+  animation-duration: .75s;
+  animation-direction: reverse;
+}
