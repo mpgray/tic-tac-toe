@@ -39,6 +39,11 @@ export class Ai {
           this.move(nextMove);
           break;
         }
+        nextMove = this.sideBlock();
+        if(nextMove !== -1) {
+          this.move(nextMove);
+          break;
+        }
         nextMove = this.sides();
         if(nextMove !== -1) {
           this.move(nextMove);
@@ -101,6 +106,13 @@ export class Ai {
         return i;
     }
     return -1;
+  }
+
+  private sideBlock() {
+    if(this.game.getMark(Square.TOP_LEFT) == this.game.getPlayer() && this.game.getMark(Square.BOTTOM_RIGHT) == this.game.getPlayer() && this.game.getMark(Square.TOP) == Mark.EMPTY)
+      return Square.TOP;
+    if(this.game.getMark(Square.TOP_RIGHT) == this.game.getPlayer() && this.game.getMark(Square.BOTTOM_LEFT) == this.game.getPlayer() && this.game.getMark(Square.BOTTOM) == Mark.EMPTY)
+      return Square.BOTTOM;
   }
 
   private corner(): number {

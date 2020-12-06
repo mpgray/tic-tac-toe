@@ -166,20 +166,15 @@ export class TicTacToe {
   public toString(): string {
     let msg = ""
     if(this.turn == 0 || this.turn == 1) {
-      msg = "X always goes first!";
+      msg = " always goes first!";
     } else {
       msg = "";
     }
     if(this.getIsGame()) {
       msg += " You are ";
-      if(this.player == Mark.O) {
-        msg += "O"
-      } else if (this.player == Mark.X) {
-        msg += "X"
-      }
     }
     if(this.looser) {
-      msg = "You have lost. I'm so, so sorry"
+      msg = "You have lost. I'm so, so sorry."
     }
     if(this.tied) {
       msg = "You have tied."

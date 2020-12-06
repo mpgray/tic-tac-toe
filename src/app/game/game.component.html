@@ -1,15 +1,17 @@
 <!-- Begin page content -->
-<main role="main" class="flex-shrink-0">
+<main role="main" class="flex-shrink-0" [ngClass]="{'background-lost': game.getLost(), 'background-tied': game.getTie()}">
   <div class="container text-center">
     <h1 class="mt-3" >
       <a class="title-bar text-warning"  data-toggle="tooltip" data-placement="bottom" title="Restart Game (Give Up)" href="#">Tic-Tac-Toe</a>
     </h1>
   </div>
-
   <div class="container game-board">
     <div class="row">
       <div class="col game-alerts" [ngClass]="{'game-lost': game.getLost(), 'game-tied': game.getTie()}">
+        <img src="../../assets/img/x.png" class="img-fluid mt-0" *ngIf="game.getTurn() == 0 || game.getTurn() == 1">
         {{game.toString()}}
+        <img src="../../assets/img/x.png" class="img-fluid mt-0" *ngIf="game.getPlayer() == 1">
+        <img src="../../assets/img/o.png" class="img-fluid mt-0" *ngIf="game.getPlayer() == 2">
       </div>
       <div class="w-100"></div>
       <div class="col game-square" [ngClass]="{'animate-square': game.free(0), 'ai-animation': aiAnimate(0)}" (click)="move(0)">
@@ -43,8 +45,8 @@
       </div>
       <div class="w-100"></div>
       <div class="col text-center" [ngClass]="{'game-buttons': game.getIsGame(), 'game-buttons-return': !game.getIsGame()}" *ngIf="game.getTurn() == 0 || game.getTurn() == 1 || !game.getIsGame()">
-        <button type="button" class="btn btn-danger" (click)="start(1)" [disabled]="game.getIsGame()" data-toggle="tooltip" data-placement="bottom" title="Go First">Play As <em>X</em></button>
-        <button type="button" class="btn btn-success" (click)="start(2)" [disabled]="game.getIsGame()" data-toggle="tooltip" data-placement="bottom" title="Go Last">Play As <em>O</em></button>
+        <button type="button" class="btn btn-danger" (click)="start(1)" [disabled]="game.getIsGame()">Play As <em>X</em></button>
+        <button type="button" class="btn btn-success" (click)="start(2)" [disabled]="game.getIsGame()">Play As <em>O</em></button>
         <button type="button" class="btn btn-info" (click)="start(3)" [disabled]="game.getIsGame()" data-toggle="tooltip" data-placement="bottom" title="> Would You like to Play a Game?">Play As <em>Random</em></button>
       </div>
     </div>
