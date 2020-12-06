@@ -108,7 +108,7 @@ export class Ai {
     return -1;
   }
 
-  private sideBlock() {
+  private sideBlock(): number {
     if(this.game.getMark(Square.TOP_LEFT) == this.game.getPlayer() && this.game.getMark(Square.BOTTOM_RIGHT) == this.game.getPlayer() && this.game.getMark(Square.TOP) == Mark.EMPTY)
       return Square.TOP;
     if(this.game.getMark(Square.TOP_RIGHT) == this.game.getPlayer() && this.game.getMark(Square.BOTTOM_LEFT) == this.game.getPlayer() && this.game.getMark(Square.BOTTOM) == Mark.EMPTY)
