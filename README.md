@@ -16,6 +16,7 @@ You can choose to be either X, O or random with X's always going first. Your gam
 - Web Local Storage used to save game state and local statistics
 - Bootstrap, CSS and media breaks used to make it mobile and tablet friendly
 - Bootstrap used as much as possible for formatting
+- This is a Single Page Application (SPA)
 - Firebase is used to host and automatically deploys when there is a push to master
 
 ## Development server

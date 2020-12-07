@@ -1,17 +1,70 @@
 <main role="main" class="flex-shrink-0">
   <div class="container text-center">
     <h1 class="mt-2" >
-      <a class="title-bar text-warning"  href="#">Statistics</a>
+      <a class="title-bar text-warning" [routerLink]="['']">Statistics</a>
     </h1>
   </div>
   <div class="container stats">
       <div>
         <ul class="list-group list-group-flush">
-          <li class="list-group-item">Cras justo odio</li>
-          <li class="list-group-item">Dapibus ac facilisis in</li>
-          <li class="list-group-item">Morbi leo risus</li>
-          <li class="list-group-item">Porta ac consectetur ac</li>
-          <li class="list-group-item">Vestibulum at eros</li>
+          <li class="list-group-item text-warning title">
+            <h3>Your Statistics:</h3>
+          </li>
+          <li class="list-group-item">
+            <div class="row">
+              <div class="col">
+                <em>Won:</em> {{statistics.won}}
+              </div>
+              <div class="col">
+                <em>Lost:</em> {{statistics.lost}}
+              </div>
+              <div class="col">
+                <em>Tied:</em> {{statistics.tie}}
+              </div>
+            </div>
+          </li>
+          <li class="list-group-item">
+            <div class="row">
+              <div class="col">
+                <em>X:</em> {{statistics.x}}
+              </div>
+              <div class="col">
+                <em>O:</em> {{statistics.o}}
+              </div>
+              <div class="col">
+                <em>Random:</em> {{statistics.random}}
+              </div>
+            </div>
+          </li>
+          <li class="list-group-item">
+            <div class="row">
+              <div class="col">
+                <em>Games Played:</em> {{statistics.won + statistics.lost + statistics.tie}}
+              </div>
+              <div class="col">
+                <button type="button" class="btn btn-danger" (click)="this.clear()">Clear Data</button>
+              </div>
+            </div>
+          </li>
+          <!--
+          <li class="list-group-item  text-warning title">
+            <h3>Global Statistics:</h3>
+          </li>
+          <li class="list-group-item">
+            <div class="row">
+              <div class="col">
+                <em>Total Won:</em>
+              </div>
+              <div class="col">
+                <em>Total Lost:</em>
+              </div>
+              <div class="col">
+                <em>Total Tied:</em>
+              </div>
+            </div>
+          </li>
+          <li class="list-group-item"><em>Total Games Played:</em></li>
+          -->
         </ul>
       </div>
   </div>

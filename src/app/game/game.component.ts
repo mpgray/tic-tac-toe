@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Ai } from './ai/ai'
+import { StatsComponent, IStats } from '../stats/stats.component'
 import { TicTacToe, Square, Mark } from './tictactoe/tictactoe'
 
 @Component({
@@ -10,8 +11,10 @@ import { TicTacToe, Square, Mark } from './tictactoe/tictactoe'
 
 export class GameComponent implements OnInit {
 
+  // inititate our needed objects
   game = new TicTacToe;
   ai = new Ai(this.game);
+  stats = new StatsComponent();
 
   started: boolean = false;
 
@@ -23,6 +26,7 @@ export class GameComponent implements OnInit {
     this.restore();
   }
 
+  //finds if there was a previous game stored locally restores it
   private restore() {
     let obj = this.getLocalGameState();
     if ( obj !== 'undefined' && obj !== null ) {
@@ -34,8 +38,10 @@ export class GameComponent implements OnInit {
     }
   }
 
+  //starts the game by flagging it as begun
   private start(mark: Mark) {
     this.started = true;
+    this.stats.start(mark);
     this.game.start(mark);
     if(this.game.getAi() == Mark.X) {
       this.ai.go();
@@ -43,20 +49,25 @@ export class GameComponent implements OnInit {
     this.setLocalGameState();
   }
 
+  // checks if the move was legal, if the game is over and has the AI go after
   move(square: Square) {
     if(this.game.move(square)) {
       this.ai.go();
       if(this.game.wins()) {
         this.game.lost();
+        this.stats.setLost();
       } else if (this.game.turn > 8) {
         this.game.tie();
+        this.stats.setTie();
       }
       this.setLocalGameState();
     }
 
     console.log("Tie: " + this.game.getTie() + " Lost: " + this.game.getLost());
+    console.log(this.stats.getStats())
   }
 
+  // Shows the correct mark in the square
   squareImg(square: number): string {
     let imgPath = "../../assets/img/blank.png";
     if(this.game.getMark(square) == Mark.X) {
@@ -67,6 +78,7 @@ export class GameComponent implements OnInit {
     return imgPath;
   }
 
+  // Starts the CSS animation
   aiAnimate(square: number): boolean {
     if(square == this.ai.getLast()){
       return true;
@@ -74,6 +86,8 @@ export class GameComponent implements OnInit {
     return false;
   }
 
+
+  // Saves the game state to localstorage
   setLocalGameState() {
       let localData = {
         "board": this.game.getBoard(),
@@ -85,6 +99,7 @@ export class GameComponent implements OnInit {
       localStorage.setItem("game", JSON.stringify(localData));
   }
 
+  // gets the game state from local storage
   getLocalGameState() {
     return JSON.parse(localStorage.getItem("game"));
   }
