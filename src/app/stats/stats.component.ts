@@ -46,7 +46,6 @@ export class StatsComponent implements OnInit {
 
   // Adds Mark (X or O) used to the local storage for the player's statistics.
   public start(mark: Mark) {
-    console.log(this.statistics)
     switch (mark) {
       case Mark.O:
         this.statistics.o++;
