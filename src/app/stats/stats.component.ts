@@ -79,6 +79,7 @@ export class StatsComponent implements OnInit {
     this.setStats(this.statistics);
   }
 
+  //clears stored data
   public clear() {
     this.statistics = {  won: 0,
                         lost: 0,

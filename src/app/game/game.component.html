@@ -45,9 +45,9 @@
       </div>
       <div class="w-100"></div>
       <div class="col text-center" [ngClass]="{'game-buttons': game.getIsGame(), 'game-buttons-return': !game.getIsGame()}" *ngIf="game.getTurn() == 0 || game.getTurn() == 1 || !game.getIsGame()">
-        <button type="button" class="btn btn-danger" (click)="start(1)" [disabled]="game.getIsGame()">Play As <em>X</em></button>
-        <button type="button" class="btn btn-success" (click)="start(2)" [disabled]="game.getIsGame()">Play As <em>O</em></button>
-        <button type="button" class="btn btn-info" (click)="start(3)" [disabled]="game.getIsGame()" data-toggle="tooltip" data-placement="bottom" title="> Would You like to Play a Game?">Play As <em>Random</em></button>
+        <button type="button" class="btn btn-danger" (click)="start(1)" [disabled]="game.getIsGame()">Play As <img src="../assets/img/x.png" class="img-fluid mt-0"></button>
+        <button type="button" class="btn btn-success" (click)="start(2)" [disabled]="game.getIsGame()">Play As <img src="../assets/img/o.png" class="img-fluid mt-0"></button>
+        <button type="button" class="btn btn-info" id="random-button" (click)="start(3)" [disabled]="game.getIsGame()" data-toggle="tooltip" data-placement="bottom" title="> Would You like to Play a Game?">Play As <em>Random</em></button>
       </div>
     </div>
   </div>
