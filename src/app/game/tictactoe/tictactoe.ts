@@ -182,7 +182,7 @@ export class TicTacToe {
       msg += " You are ";
     }
     if(this.looser) {
-      msg = "You have lost. I'm so, so sorry."
+      msg = "You lost. I'm so, so sorry."
     }
     if(this.tied) {
       msg = "You have tied."
