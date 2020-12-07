@@ -6,7 +6,7 @@ See it in action: [The Tic Tac Toe](https://the-tic-tack-toe.web.app/)
 
 ## Features 
 
-You can choose to be either X, O or random with X's always going first. Your game state saves locally so you can return to the game anytime. Statistics are kept for the user locally and the game also keeps global statistics on a simple json server. The AI should play perfectly. I wrote it myself and I had to have a volunteer play and beat the AI for a while. 
+You can choose to be either X, O or random with X's always going first. Your game state saves locally so you can return to the game anytime. Statistics are kept for the user locally and the game also keeps global statistics on a simple json server. The AI should play perfectly. I had to have a volunteer play and beat the AI for a while. 
 
 ## Tools Used
 
