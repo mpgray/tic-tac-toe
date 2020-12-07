@@ -2,7 +2,7 @@
 <main role="main" class="flex-shrink-0" [ngClass]="{'background-lost': game.getLost(), 'background-tied': game.getTie()}">
   <div class="container text-center">
     <h1 class="mt-3" >
-      <a class="title-bar text-warning"  data-toggle="tooltip" data-placement="bottom" title="Restart Game (Give Up)" href="#">Tic-Tac-Toe</a>
+      <a class="title-bar text-warning"  data-toggle="tooltip" data-placement="bottom" title="About this Game" [routerLink]="['/about']" alt="About this game" >Tic-Tac-Toe</a>
     </h1>
   </div>
   <div class="container game-board">

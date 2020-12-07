@@ -10,7 +10,10 @@ export class Ai {
     return this.lastMove;
   }
 
-  go(){
+  //AI goes through a long process of finding which square is best then goes.
+  public go(){
+    // This switch statement has each case of what the AI will do depending on what turn it is
+    // I.E. case 0 is turn 1
     switch(this.game.getTurn()) {
       case 0: {
         this.move(Square.MIDDLE);
@@ -100,6 +103,7 @@ export class Ai {
    }
   }
 
+  // Is the spot Empty
   private available(): number {
     for(let i = 0; i < 8; i++){
       if(this.game.getMark(i) == Mark.EMPTY)
@@ -108,6 +112,7 @@ export class Ai {
     return -1;
   }
 
+  // Blocks the players if they take opposite corners in their first 2 moves
   private sideBlock(): number {
     if(this.game.getMark(Square.TOP_LEFT) == this.game.getPlayer() && this.game.getMark(Square.BOTTOM_RIGHT) == this.game.getPlayer() && this.game.getMark(Square.TOP) == Mark.EMPTY)
       return Square.TOP;
@@ -116,6 +121,7 @@ export class Ai {
     return -1
   }
 
+  // AI Takes the first available corner
   private corner(): number {
     if(this.game.getMark(Square.TOP_LEFT) == Mark.EMPTY) {
       return Square.TOP_LEFT;
@@ -132,6 +138,7 @@ export class Ai {
     return -1
   }
 
+  // Makes a side block if the player is setting themself up for a winning position next move
   private sides(): number {
     if(this.game.getMark(Square.TOP) == this.game.getPlayer() && this.game.getMark(Square.LEFT) == this.game.getPlayer() && this.game.getMark(Square.TOP_LEFT) == Mark.EMPTY)
       return Square.TOP_LEFT;
@@ -152,27 +159,28 @@ export class Ai {
     return -1;
   }
 
-  private wins(character: number) {
-    if(this.willWin([0,1,2], character) !== -1)
-      return this.willWin([0,1,2], character);
-    if(this.willWin([3,4,5], character) !== -1)
-      return this.willWin([3,4,5], character);
-    if(this.willWin([6,7,8], character) !== -1)
-      return this.willWin([6,7,8], character);
-    if(this.willWin([0,3,6], character) !== -1)
-      return this.willWin([0,3,6], character);
-    if(this.willWin([1,4,7], character) !== -1)
-      return this.willWin([1,4,7], character);
-    if(this.willWin([2,5,8], character) !== -1)
-      return this.willWin([2,5,8], character);
-    if(this.willWin([0,4,8], character) !== -1)
-      return this.willWin([0,4,8], character);
-    if(this.willWin([2,4,6], character) !== -1)
-      return this.willWin([2,4,6], character);
+  //Checks if the player or AI will win next move (has 2 in a row) and Goes in that space
+  private wins(mark: Mark) {
+    if(this.willWin([0,1,2], mark) !== -1)
+      return this.willWin([0,1,2], mark);
+    if(this.willWin([3,4,5], mark) !== -1)
+      return this.willWin([3,4,5], mark);
+    if(this.willWin([6,7,8], mark) !== -1)
+      return this.willWin([6,7,8], mark);
+    if(this.willWin([0,3,6], mark) !== -1)
+      return this.willWin([0,3,6], mark);
+    if(this.willWin([1,4,7], mark) !== -1)
+      return this.willWin([1,4,7], mark);
+    if(this.willWin([2,5,8], mark) !== -1)
+      return this.willWin([2,5,8], mark);
+    if(this.willWin([0,4,8], mark) !== -1)
+      return this.willWin([0,4,8], mark);
+    if(this.willWin([2,4,6], mark) !== -1)
+      return this.willWin([2,4,6], mark);
     return -1;
   }
 
-
+  // A check if player or AI will win
   private willWin(wins: number[], mark: Mark) {
     let count = 0;
     let isEmpty = false;
@@ -192,6 +200,7 @@ export class Ai {
     return -1;
   }
 
+  // AI Found a spot and moves
   private move(square: number) {
     this.game.move(square, this.game.getAi());
     this.lastMove = square;
