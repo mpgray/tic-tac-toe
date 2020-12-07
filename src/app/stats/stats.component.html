@@ -36,7 +36,16 @@
               </div>
             </div>
           </li>
-          <li class="list-group-item"><em>Games Played:</em> {{statistics.won + statistics.lost + statistics.tie}}</li>
+          <li class="list-group-item">
+            <div class="row">
+              <div class="col">
+                <em>Games Played:</em> {{statistics.won + statistics.lost + statistics.tie}}
+              </div>
+              <div class="col">
+                <button type="button" class="btn btn-danger" (click)="this.clear()">Clear Data</button>
+              </div>
+            </div>
+          </li>
           <!--
           <li class="list-group-item  text-warning title">
             <h3>Global Statistics:</h3>

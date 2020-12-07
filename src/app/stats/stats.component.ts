@@ -79,4 +79,14 @@ export class StatsComponent implements OnInit {
     this.setStats(this.statistics);
   }
 
+  public clear() {
+    this.statistics = {  won: 0,
+                        lost: 0,
+                        tie: 0,
+                        x: 0,
+                        o: 0,
+                        random: 0 };
+    this.setStats(this.statistics);
+  }
+
 }
