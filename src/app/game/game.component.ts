@@ -31,7 +31,7 @@ export class GameComponent implements OnInit {
     let obj = this.getLocalGameState();
     if ( obj !== 'undefined' && obj !== null ) {
       if(obj.game == false) {
-        localStorage.clear();
+        //localStorage.clear(); // I do not believe this is nessary but not 100%. Was bugging out stats
       } else {
         this.game.restore(obj);
       }
@@ -62,9 +62,6 @@ export class GameComponent implements OnInit {
       }
       this.setLocalGameState();
     }
-
-    console.log("Tie: " + this.game.getTie() + " Lost: " + this.game.getLost());
-    console.log(this.stats.getStats())
   }
 
   // Shows the correct mark in the square
