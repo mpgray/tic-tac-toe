@@ -1,0 +1,128 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="color-scheme" content="light dark" />
+    <meta name="description" content="Tic-tac-toe you can play against an unbeatable computer opponent." />
+    <meta name="author" content="Michael Gray" />
+    <title>Play · Tic-Tac-Toe</title>
+    <link rel="icon" href="./src/assets/favicon.ico" />
+  </head>
+  <body>
+    <a class="skip-link" href="#main" data-skip>Skip to content</a>
+
+    <header class="site-header">
+      <a class="brand" href="#/play"><img src="./src/assets/x.png" alt="" width="32" height="32" />Tic-Tac-Toe</a>
+      <nav aria-label="Main">
+        <ul>
+          <li><a href="#/play" data-route="play">Play</a></li>
+          <li><a href="#/stats" data-route="stats">Statistics</a></li>
+          <li><a href="#/about" data-route="about">About</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <main id="main" tabindex="-1">
+      <section data-view="play" aria-labelledby="play-title">
+        <h1 id="play-title" class="title" tabindex="-1">Tic-Tac-Toe</h1>
+
+        <p id="game-message" class="message"></p>
+
+        <div
+          id="board"
+          class="board"
+          role="group"
+          aria-label="Game board"
+          aria-describedby="board-help"
+        ></div>
+        <p id="board-help" class="hint">
+          Arrow keys move between squares. Enter or Space plays the selected square.
+        </p>
+
+        <div id="start-controls" class="start" role="group" aria-labelledby="start-label">
+          <p id="start-label" class="start-label">Start a new game</p>
+          <button type="button" class="choice choice-x" data-choice="X">
+            Play as <img src="./src/assets/x.png" alt="X" width="28" height="28" />
+          </button>
+          <button type="button" class="choice choice-o" data-choice="O">
+            Play as <img src="./src/assets/o.png" alt="O" width="28" height="28" />
+          </button>
+          <button type="button" class="choice choice-random" data-choice="random">
+            Play as <em>Random</em>
+          </button>
+        </div>
+      </section>
+
+      <section data-view="stats" aria-labelledby="stats-title" hidden>
+        <h1 id="stats-title" class="title" tabindex="-1">Statistics</h1>
+        <div class="card">
+          <table class="stats">
+            <caption>Your results</caption>
+            <tbody>
+              <tr><th scope="row">Won</th><td data-stat="won">0</td></tr>
+              <tr><th scope="row">Lost</th><td data-stat="lost">0</td></tr>
+              <tr><th scope="row">Tied</th><td data-stat="tied">0</td></tr>
+              <tr class="total"><th scope="row">Games played</th><td data-stat="played">0</td></tr>
+            </tbody>
+          </table>
+          <table class="stats">
+            <caption>Games by the mark you chose</caption>
+            <tbody>
+              <tr><th scope="row">X</th><td data-stat="x">0</td></tr>
+              <tr><th scope="row">O</th><td data-stat="o">0</td></tr>
+              <tr><th scope="row">Random</th><td data-stat="random">0</td></tr>
+            </tbody>
+          </table>
+          <p id="storage-note" class="note" hidden>
+            This browser is not letting the site save data, so statistics and your current game
+            last only until the page is closed or reloaded.
+          </p>
+          <button type="button" id="reset-stats" class="danger">Reset statistics</button>
+        </div>
+      </section>
+
+      <section data-view="about" aria-labelledby="about-title" hidden>
+        <h1 id="about-title" class="title" tabindex="-1">About</h1>
+        <div class="card prose">
+          <p>
+            Tic Tac Toe reminds me of being a kid. We would play on the kids' menu while we were
+            waiting for service at a restaurant. I would cheat when no one was looking because it
+            was hard to win otherwise. I used to cheat in Monopoly too, but I don't have an excuse
+            for that. It is a good thing I have a more developed sense of morality now.
+          </p>
+          <h2>Rules</h2>
+          <p>
+            X always goes first. Players take turns filling squares until someone gets three in a
+            row. If every square is filled and nobody has three in a row, the game is a tie.
+          </p>
+          <h2>Features</h2>
+          <p>
+            Choose to play as X, as O, or let a coin flip decide. Your game is saved in this
+            browser, so you can come back to it at any time, and your personal statistics are
+            kept here too. Nothing is sent anywhere.
+          </p>
+          <p>
+            The computer is unbeatable. Tic Tac Toe is a solved game, and before every move the
+            computer searches every possible continuation (minimax with alpha-beta pruning). The
+            best you can do is a tie.
+          </p>
+          <p>
+            The game can be played entirely from the keyboard, and every move and result is
+            announced to screen readers.
+          </p>
+          <h2>Credits</h2>
+          <p>
+            Made by Michael Gray. First built with Angular in December 2020 and rebuilt in 2026 as
+            a small TypeScript site with no framework.
+            <a href="https://github.com/mpgray/tic-tac-toe">Source code on GitHub</a>.
+          </p>
+        </div>
+      </section>
+    </main>
+
+    <div id="announcer" class="visually-hidden" role="status" aria-live="polite" aria-atomic="true"></div>
+
+    <script type="module" src="./src/main.ts"></script>
+  </body>
+</html>
